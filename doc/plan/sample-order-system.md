@@ -63,6 +63,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 32 | controller+view | 주문 전체 목록 조회 메뉴 추가 | [phase-32](sample-order-system/phase-32-order-list-all.md) | [x] |
 | 33 | controller+view | 승인 대기중(RESERVED) 주문만 조회 메뉴 추가 | [phase-33](sample-order-system/phase-33-order-list-pending.md) | [x] |
 | 34 | model+controller+view | 도메인 값 검증 예외처리(시료등록 ValueError) + 주문 수량 검증 | [phase-34](sample-order-system/phase-34-domain-validation-safety.md) | [x] |
+| 35 | controller | 승인/거절/취소 진입시 대기목록 먼저 표시 + 서브메뉴 취소 옵션 | [phase-35](sample-order-system/phase-35-show-pending-before-action.md) | [ ] |
 
 Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.
 
