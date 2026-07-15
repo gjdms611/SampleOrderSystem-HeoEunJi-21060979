@@ -11,4 +11,4 @@
 - `class Order: def __init__(self, order_id, customer_name, sample_id, quantity)` → `self.status = OrderStatus.RESERVED`
 
 ## 완료 조건
-- [ ] Order 생성 시 상태가 RESERVED인지 확인하는 테스트
+- [x] Order 생성 시 상태가 RESERVED인지 확인하는 테스트
