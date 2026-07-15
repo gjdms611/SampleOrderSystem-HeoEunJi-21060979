@@ -62,7 +62,9 @@ def test_full_flow_submit_approve_shortage_produce_complete_release(tmp_path):
 
     confirmed_orders = order_controller.complete_production(confirmed_jobs)
 
-    assert confirmed_orders == [order_repo.find_by_id(order.order_id)]
+    assert len(confirmed_orders) == 1
+    assert confirmed_orders[0].order_id == order.order_id
+    assert confirmed_orders[0].status == OrderStatus.CONFIRMED
     assert order_repo.find_by_id(order.order_id).status == OrderStatus.CONFIRMED
 
     released = order_controller.release_order(order.order_id)

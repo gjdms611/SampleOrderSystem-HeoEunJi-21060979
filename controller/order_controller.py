@@ -41,6 +41,15 @@ class OrderController:
         self.order_repo.save(order)
         return order
 
+    def complete_production(self, confirmed_jobs):
+        confirmed_orders = []
+        for job in confirmed_jobs:
+            order = self.order_repo.find_by_id(job.order_id)
+            order.complete_production()
+            self.order_repo.save(order)
+            confirmed_orders.append(order)
+        return confirmed_orders
+
     def approve(self, order_id):
         order = self.order_repo.find_by_id(order_id)
         inventory = self.inventory_repo.find_by_sample_id(order.sample_id)

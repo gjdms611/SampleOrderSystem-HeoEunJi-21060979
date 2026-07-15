@@ -41,6 +41,11 @@ class Order:
             raise InvalidOrderTransitionError(f"cannot transition from {self.status}")
         self.status = OrderStatus.RELEASE
 
+    def complete_production(self) -> None:
+        if self.status != OrderStatus.PRODUCING:
+            raise InvalidOrderTransitionError(f"cannot transition from {self.status}")
+        self.status = OrderStatus.CONFIRMED
+
     def approve(self, inventory_qty_at_approval: int, sample=None):
         self._guard_reserved()
         if inventory_qty_at_approval >= self.quantity:
