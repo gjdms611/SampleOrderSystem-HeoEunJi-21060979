@@ -23,11 +23,11 @@ def test_submit_creates_reserved_order_with_sequential_id_and_saves_it(tmp_path)
     order1 = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
     order2 = controller.submit(customer_name="Globex", sample_id="S2", quantity=5)
 
-    assert order1.order_id == "O1"
+    assert order1.order_id == "ORD-001"
     assert order1.status == OrderStatus.RESERVED
-    assert order2.order_id == "O2"
+    assert order2.order_id == "ORD-002"
 
-    saved1 = order_repo.find_by_id("O1")
+    saved1 = order_repo.find_by_id("ORD-001")
     assert saved1 is not None
     assert saved1.customer_name == "Acme"
     assert saved1.quantity == 10
