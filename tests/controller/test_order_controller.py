@@ -59,3 +59,28 @@ def test_cancel_on_already_rejected_order_returns_none_without_raising(tmp_path)
 
     assert result is None
     assert order_repo.find_by_id(order.order_id).status == OrderStatus.REJECTED
+
+
+def test_reject_on_nonexistent_order_id_returns_none_without_raising(tmp_path):
+    controller, _order_repo = make_controller(tmp_path)
+
+    result = controller.reject("NOPE")
+
+    assert result is None
+
+
+def test_cancel_on_nonexistent_order_id_returns_none_without_raising(tmp_path):
+    controller, _order_repo = make_controller(tmp_path)
+
+    result = controller.cancel("NOPE")
+
+    assert result is None
+
+
+def test_submit_with_unregistered_sample_id_returns_none_and_saves_nothing(tmp_path):
+    controller, order_repo = make_controller(tmp_path)
+
+    result = controller.submit(customer_name="Acme", sample_id="NOPE", quantity=10)
+
+    assert result is None
+    assert order_repo.find_all() == []

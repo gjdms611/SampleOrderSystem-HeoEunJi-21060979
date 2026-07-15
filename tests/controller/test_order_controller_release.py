@@ -35,3 +35,11 @@ def test_release_order_on_non_confirmed_order_returns_none_without_raising(tmp_p
 
     assert result is None
     assert order_repo.find_by_id("O1").status == OrderStatus.RESERVED
+
+
+def test_release_order_on_nonexistent_order_id_returns_none_without_raising(tmp_path):
+    controller, _order_repo = make_controller(tmp_path)
+
+    result = controller.release_order("NOPE")
+
+    assert result is None
