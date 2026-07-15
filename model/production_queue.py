@@ -1,5 +1,6 @@
 import heapq
 import itertools
+import time
 
 
 class ProductionQueue:
@@ -21,6 +22,7 @@ class ProductionQueue:
             if line is None and self.waiting:
                 job = self.waiting.pop(0)
                 self._waiting_ids.discard(id(job))
+                job.started_at = time.time()
                 self.lines[i] = job
 
     def produce_unit(self, line_index: int, inventory) -> list:

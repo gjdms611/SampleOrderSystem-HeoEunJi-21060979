@@ -6,3 +6,4 @@ class ProductionJob:
         self.actual_qty = actual_qty
         self.total_production_time = total_production_time
         self.produced_qty = 0
+        self.started_at = None
