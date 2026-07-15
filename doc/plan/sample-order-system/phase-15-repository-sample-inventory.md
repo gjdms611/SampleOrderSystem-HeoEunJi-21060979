@@ -15,6 +15,7 @@
   - `class InventoryRepository: def __init__(self, file_path: str)`
   - `save(self, inventory: Inventory)`
   - `find_by_sample_id(self, sample_id) -> Inventory | None`
+  - `find_all(self) -> list[Inventory]` (Phase 20에서 모니터링 재고 판정이 전체 재고 목록을 순회해야 해서 추가됨)
 
 ## 엣지 케이스
 - 동일 ID 저장 시 덮어쓰기
