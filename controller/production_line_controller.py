@@ -1,5 +1,6 @@
 import math
 import time
+from datetime import datetime
 
 
 class ProductionLineController:
@@ -26,3 +27,39 @@ class ProductionLineController:
                 inventory_repo.save(inventory)
 
         return order_controller.complete_production(confirmed_jobs)
+
+    def describe_current(self, order_repo, sample_repo, inventory_repo):
+        rows = []
+        for job in self.current_jobs():
+            order = order_repo.find_by_id(job.order_id)
+            sample = sample_repo.find_by_id(job.sample_id)
+            inventory = inventory_repo.find_by_sample_id(job.sample_id)
+            rows.append({
+                "order_id": job.order_id,
+                "sample_name": sample.name,
+                "quantity": order.quantity,
+                "inventory": inventory.quantity if inventory is not None else 0,
+                "shortage": job.shortage,
+                "actual_qty": job.actual_qty,
+                "produced_qty": job.produced_qty,
+                "yield_rate": sample.yield_rate,
+                "progress_ratio": job.produced_qty / job.actual_qty,
+                "expected_completion_at": datetime.fromtimestamp(job.started_at + job.total_production_time),
+            })
+        return rows
+
+    def describe_waiting(self, order_repo, sample_repo):
+        rows = []
+        for position, job in enumerate(self.waiting_jobs(), start=1):
+            order = order_repo.find_by_id(job.order_id)
+            sample = sample_repo.find_by_id(job.sample_id)
+            rows.append({
+                "position": position,
+                "order_id": job.order_id,
+                "sample_name": sample.name,
+                "quantity": order.quantity,
+                "shortage": job.shortage,
+                "actual_qty": job.actual_qty,
+                "expected_completion_at": None,
+            })
+        return rows
