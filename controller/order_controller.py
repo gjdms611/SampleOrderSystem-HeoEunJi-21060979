@@ -18,7 +18,10 @@ class OrderController:
         if self.sample_repo.find_by_id(sample_id) is None:
             return None
         order_id = f"O{len(self.order_repo.find_all()) + 1}"
-        order = Order(order_id, customer_name, sample_id, quantity)
+        try:
+            order = Order(order_id, customer_name, sample_id, quantity)
+        except ValueError:
+            return None
         self.order_repo.save(order)
         return order
 

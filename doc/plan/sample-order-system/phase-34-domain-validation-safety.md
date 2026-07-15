@@ -21,6 +21,6 @@ PRD-코드 대조검증에서 발견된 버그 2건:
 
 ## 완료 조건
 
-- [ ] `Order(quantity=0)` / `Order(quantity=-1)`이 `ValueError`를 내는지 테스트
-- [ ] `OrderController.submit()`이 수량이 0 이하일 때 `None`을 반환하는지(예외 전파 없음) 테스트
-- [ ] `python main.py`로 시료 등록 시 잘못된 숫자값(예: 평균생산시간에 0)을 넣어도 콘솔이 죽지 않고 안내 후 메뉴로 복귀하는지 수동 확인
+- [x] `Order(quantity=0)` / `Order(quantity=-1)`이 `ValueError`를 내는지 테스트
+- [x] `OrderController.submit()`이 수량이 0 이하일 때 `None`을 반환하는지(예외 전파 없음) 테스트
+- [x] `python main.py`로 시료 등록 시 잘못된 숫자값(예: 평균생산시간에 0)을 넣어도 콘솔이 죽지 않고 안내 후 메뉴로 복귀하는지 수동 확인

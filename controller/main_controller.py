@@ -33,7 +33,11 @@ class MainController:
             if sample_id is None:
                 console_view.show_message("취소되었습니다.")
                 return
-            sample, is_new = self.sample_controller.register(sample_id, name, avg_production_time, yield_rate)
+            try:
+                sample, is_new = self.sample_controller.register(sample_id, name, avg_production_time, yield_rate)
+            except ValueError as e:
+                console_view.show_message(str(e), error=True)
+                return
             if not is_new:
                 console_view.show_message("이미 등록된 시료ID입니다. 기존 정보:")
             console_view.show_sample(sample)

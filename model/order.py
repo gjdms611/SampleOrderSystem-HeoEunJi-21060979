@@ -18,6 +18,8 @@ class InvalidOrderTransitionError(Exception):
 
 class Order:
     def __init__(self, order_id, customer_name, sample_id, quantity):
+        if quantity <= 0:
+            raise ValueError("quantity must be positive")
         self.order_id = order_id
         self.customer_name = customer_name
         self.sample_id = sample_id
