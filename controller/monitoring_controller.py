@@ -8,9 +8,9 @@ class MonitoringController:
         self.inventory_repo = inventory_repo
 
     def count_orders_by_status(self):
-        counts = {}
+        counts = {status: 0 for status in OrderStatus}
         for order in self.order_repo.find_all():
-            counts[order.status] = counts.get(order.status, 0) + 1
+            counts[order.status] += 1
         return counts
 
     def judge_all_stock(self):
