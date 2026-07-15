@@ -107,6 +107,21 @@ def show_order(order) -> None:
     console.print(table)
 
 
+def show_orders(orders) -> None:
+    if not orders:
+        show_message("등록된 주문이 없습니다.")
+        return
+    table = Table(show_header=True, header_style="bold cyan")
+    table.add_column("주문ID")
+    table.add_column("고객명")
+    table.add_column("시료ID")
+    table.add_column("수량")
+    table.add_column("상태")
+    for order in orders:
+        table.add_row(order.order_id, order.customer_name, order.sample_id, str(order.quantity), order.status.value)
+    console.print(table)
+
+
 def show_status_counts(counts) -> None:
     if not counts:
         show_message("등록된 주문이 없습니다.")

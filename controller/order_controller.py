@@ -8,6 +8,9 @@ class OrderController:
         self.sample_repo = sample_repo
         self.production_queue = production_queue
 
+    def list_all(self):
+        return self.order_repo.find_all()
+
     def submit(self, customer_name, sample_id, quantity):
         if self.sample_repo.find_by_id(sample_id) is None:
             return None

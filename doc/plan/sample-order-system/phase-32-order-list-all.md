@@ -18,5 +18,5 @@
 
 ## 완료 조건
 
-- [ ] `OrderController.list_all()`이 저장된 모든 주문을 반환하는지 테스트
-- [ ] `python main.py`로 주문 메뉴에서 전체조회 시 등록된 주문 목록이 보이는지 수동 확인
+- [x] `OrderController.list_all()`이 저장된 모든 주문을 반환하는지 테스트
+- [x] `python main.py`로 주문 메뉴에서 전체조회 시 등록된 주문 목록이 보이는지 수동 확인
