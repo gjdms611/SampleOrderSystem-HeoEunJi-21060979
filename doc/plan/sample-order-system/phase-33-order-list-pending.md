@@ -18,5 +18,5 @@ Phase32의 "전체조회"는 모든 상태의 주문을 다 보여준다. 실제
 
 ## 완료 조건
 
-- [ ] `OrderController.list_pending()`이 RESERVED 상태 주문만 반환하는지(다른 상태는 제외) 테스트
-- [ ] `python main.py`로 승인대기 조회 시 RESERVED 주문만 보이는지 수동 확인
+- [x] `OrderController.list_pending()`이 RESERVED 상태 주문만 반환하는지(다른 상태는 제외) 테스트
+- [x] `python main.py`로 승인대기 조회 시 RESERVED 주문만 보이는지 수동 확인

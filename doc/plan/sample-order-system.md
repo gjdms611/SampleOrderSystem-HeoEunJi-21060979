@@ -61,7 +61,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 30 | view+controller | 입력 중 취소(뒤로가기) 지원 (빈 입력으로 상위 메뉴 복귀) | [phase-30](sample-order-system/phase-30-cancel-during-input.md) | [x] |
 | 31 | controller | 주문 승인 시 재고 차감 (치명적 버그 수정) | [phase-31](sample-order-system/phase-31-inventory-deduction-on-approve.md) | [x] |
 | 32 | controller+view | 주문 전체 목록 조회 메뉴 추가 | [phase-32](sample-order-system/phase-32-order-list-all.md) | [x] |
-| 33 | controller+view | 승인 대기중(RESERVED) 주문만 조회 메뉴 추가 | [phase-33](sample-order-system/phase-33-order-list-pending.md) | [ ] |
+| 33 | controller+view | 승인 대기중(RESERVED) 주문만 조회 메뉴 추가 | [phase-33](sample-order-system/phase-33-order-list-pending.md) | [x] |
 
 Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.
 

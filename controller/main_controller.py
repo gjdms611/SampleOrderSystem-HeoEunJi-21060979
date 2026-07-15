@@ -51,7 +51,7 @@ class MainController:
             console_view.show_message("잘못된 선택입니다.")
 
     def _handle_order_menu(self) -> None:
-        action = input("1. 접수 2. 승인 3. 거절 4. 취소 5. 전체조회\n선택> ").strip()
+        action = input("1. 접수 2. 승인 3. 거절 4. 취소 5. 전체조회 6. 승인대기 조회\n선택> ").strip()
         if action == "1":
             customer_name, sample_id, quantity = console_view.prompt_order_submit()
             if customer_name is None:
@@ -82,6 +82,9 @@ class MainController:
             console_view.show_order(order)
         elif action == "5":
             orders = self.order_controller.list_all()
+            console_view.show_orders(orders)
+        elif action == "6":
+            orders = self.order_controller.list_pending()
             console_view.show_orders(orders)
         else:
             console_view.show_message("잘못된 선택입니다.")

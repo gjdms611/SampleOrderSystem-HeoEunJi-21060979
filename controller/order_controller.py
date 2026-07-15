@@ -1,4 +1,4 @@
-from model.order import InvalidOrderTransitionError, Order
+from model.order import InvalidOrderTransitionError, Order, OrderStatus
 
 
 class OrderController:
@@ -10,6 +10,9 @@ class OrderController:
 
     def list_all(self):
         return self.order_repo.find_all()
+
+    def list_pending(self):
+        return [order for order in self.order_repo.find_all() if order.status == OrderStatus.RESERVED]
 
     def submit(self, customer_name, sample_id, quantity):
         if self.sample_repo.find_by_id(sample_id) is None:
