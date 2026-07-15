@@ -44,6 +44,17 @@ def test_approve_with_insufficient_inventory_producing_and_enqueues_job(tmp_path
     assert queue.lines[0].shortage == 7
 
 
+def test_approve_when_inventory_not_registered_treats_it_as_zero_and_producing(tmp_path):
+    controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
+    sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+    order = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
+
+    result = controller.approve(order.order_id)
+
+    assert result.status == OrderStatus.PRODUCING
+    assert queue.lines[0].shortage == 10
+
+
 def test_approve_on_non_reserved_order_returns_none_without_raising(tmp_path):
     controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
     sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))

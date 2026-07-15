@@ -53,10 +53,11 @@ class OrderController:
     def approve(self, order_id):
         order = self.order_repo.find_by_id(order_id)
         inventory = self.inventory_repo.find_by_sample_id(order.sample_id)
+        inventory_qty_at_approval = inventory.quantity if inventory is not None else 0
         sample = self.sample_repo.find_by_id(order.sample_id)
 
         try:
-            job = order.approve(inventory_qty_at_approval=inventory.quantity, sample=sample)
+            job = order.approve(inventory_qty_at_approval=inventory_qty_at_approval, sample=sample)
         except InvalidOrderTransitionError:
             return None
 
