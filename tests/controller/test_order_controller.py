@@ -1,6 +1,7 @@
 from controller.order_controller import OrderController
 from model.order import OrderStatus
 from model.production_queue import ProductionQueue
+from model.sample import Sample
 from repository.inventory_repository import InventoryRepository
 from repository.order_repository import OrderRepository
 from repository.sample_repository import SampleRepository
@@ -16,6 +17,8 @@ def make_controller(tmp_path):
 
 def test_submit_creates_reserved_order_with_sequential_id_and_saves_it(tmp_path):
     controller, order_repo = make_controller(tmp_path)
+    controller.sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+    controller.sample_repo.save(Sample("S2", "Wafer-B", 3.0, 0.8))
 
     order1 = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
     order2 = controller.submit(customer_name="Globex", sample_id="S2", quantity=5)
@@ -32,6 +35,7 @@ def test_submit_creates_reserved_order_with_sequential_id_and_saves_it(tmp_path)
 
 def test_reject_transitions_order_to_rejected_and_persists(tmp_path):
     controller, order_repo = make_controller(tmp_path)
+    controller.sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
     order = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
 
     result = controller.reject(order.order_id)
@@ -42,6 +46,7 @@ def test_reject_transitions_order_to_rejected_and_persists(tmp_path):
 
 def test_cancel_transitions_reserved_order_to_rejected_and_persists(tmp_path):
     controller, order_repo = make_controller(tmp_path)
+    controller.sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
     order = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
 
     result = controller.cancel(order.order_id)
@@ -52,6 +57,7 @@ def test_cancel_transitions_reserved_order_to_rejected_and_persists(tmp_path):
 
 def test_cancel_on_already_rejected_order_returns_none_without_raising(tmp_path):
     controller, order_repo = make_controller(tmp_path)
+    controller.sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
     order = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
     controller.reject(order.order_id)
 

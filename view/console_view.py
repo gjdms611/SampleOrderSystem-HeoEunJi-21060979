@@ -25,11 +25,27 @@ def show_main_menu() -> str:
     return console.input("[bold]선택> [/bold]").strip()
 
 
+def prompt_float(message: str) -> float:
+    while True:
+        try:
+            return float(console.input(message).strip())
+        except ValueError:
+            show_message("숫자를 입력해주세요.", error=True)
+
+
+def prompt_int(message: str) -> int:
+    while True:
+        try:
+            return int(console.input(message).strip())
+        except ValueError:
+            show_message("숫자를 입력해주세요.", error=True)
+
+
 def prompt_sample_register():
     sample_id = console.input("시료ID: ").strip()
     name = console.input("이름: ").strip()
-    avg_production_time = float(console.input("평균생산시간: ").strip())
-    yield_rate = float(console.input("수율(0~1): ").strip())
+    avg_production_time = prompt_float("평균생산시간: ")
+    yield_rate = prompt_float("수율(0~1): ")
     return sample_id, name, avg_production_time, yield_rate
 
 
@@ -61,7 +77,7 @@ def show_samples(samples) -> None:
 def prompt_order_submit():
     customer_name = console.input("고객명: ").strip()
     sample_id = console.input("시료ID: ").strip()
-    quantity = int(console.input("수량: ").strip())
+    quantity = prompt_int("수량: ")
     return customer_name, sample_id, quantity
 
 

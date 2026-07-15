@@ -28,8 +28,16 @@
 
 ## 완료 조건
 
-- [ ] 존재하지 않는 order_id로 reject/cancel/release_order 호출 시 None 반환(예외 전파 없음) 테스트 3건
-- [ ] 존재하지 않는 order_id로 approve 호출 시 None 반환 테스트
-- [ ] 등록 안 된 sample_id를 가리키는 주문의 approve 호출 시 None 반환(예외 없음) 테스트
-- [ ] 존재하지 않는 sample_id로 submit 호출 시 None 반환 테스트
-- [ ] 숫자 입력란에 비숫자 값을 넣었을 때 콘솔이 죽지 않고 재입력을 요구하는지 수동 확인
+- [x] 존재하지 않는 order_id로 reject/cancel/release_order 호출 시 None 반환(예외 전파 없음) 테스트 3건
+- [x] 존재하지 않는 order_id로 approve 호출 시 None 반환 테스트
+- [x] 등록 안 된 sample_id를 가리키는 주문의 approve 호출 시 None 반환(예외 없음) 테스트
+- [x] 존재하지 않는 sample_id로 submit 호출 시 None 반환 테스트
+- [x] 숫자 입력란에 비숫자 값을 넣었을 때 콘솔이 죽지 않고 재입력을 요구하는지 수동 확인
+
+## 구현 메모
+
+- submit()이 sample_id를 검증하게 되면서, 기존 테스트들이 실제 Sample을 등록하지 않고 임의
+  sample_id 문자열만 쓰던 관행이 깨졌다 — 해당 테스트에 `sample_repo.save(Sample(...))`를
+  추가해 정상화.
+- A(reject/cancel/release_order)/B(approve)/C(submit)/D(콘솔 숫자 입력)를 subagent
+  3개로 병렬 RED 작성 후, controller 쪽(A+B+C)은 직접, view 쪽(D)은 subagent로 GREEN 진행.
