@@ -30,7 +30,9 @@ class MainController:
         action = input("1. 등록 2. 조회 3. 검색\n선택> ").strip()
         if action == "1":
             sample_id, name, avg_production_time, yield_rate = console_view.prompt_sample_register()
-            sample = self.sample_controller.register(sample_id, name, avg_production_time, yield_rate)
+            sample, is_new = self.sample_controller.register(sample_id, name, avg_production_time, yield_rate)
+            if not is_new:
+                console_view.show_message("이미 등록된 시료ID입니다. 기존 정보:")
             console_view.show_sample(sample)
         elif action == "2":
             samples = self.sample_controller.list_all()

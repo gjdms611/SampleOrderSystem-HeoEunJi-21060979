@@ -6,9 +6,13 @@ class SampleController:
         self.repo = repo
 
     def register(self, sample_id, name, avg_production_time, yield_rate):
+        existing = self.repo.find_by_id(sample_id)
+        if existing is not None:
+            return existing, False
+
         sample = Sample(sample_id, name, avg_production_time, yield_rate)
         self.repo.save(sample)
-        return sample
+        return sample, True
 
     def get(self, sample_id):
         return self.repo.find_by_id(sample_id)

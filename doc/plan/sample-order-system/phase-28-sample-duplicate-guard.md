@@ -21,6 +21,6 @@
 
 ## 완료 조건
 
-- [ ] 존재하지 않는 sample_id로 register 시 새로 생성되고 `(sample, True)` 반환 테스트
-- [ ] 이미 존재하는 sample_id로 register 시 저장소가 바뀌지 않고(덮어쓰기 안 됨) 기존 정보 + `(sample, False)` 반환 테스트
-- [ ] `python main.py`로 같은 ID를 두 번 등록해봤을 때 "이미 등록된 시료ID입니다" 안내와 기존 정보가 뜨는지 수동 확인
+- [x] 존재하지 않는 sample_id로 register 시 새로 생성되고 `(sample, True)` 반환 테스트
+- [x] 이미 존재하는 sample_id로 register 시 저장소가 바뀌지 않고(덮어쓰기 안 됨) 기존 정보 + `(sample, False)` 반환 테스트
+- [x] `python main.py`로 같은 ID를 두 번 등록해봤을 때 "이미 등록된 시료ID입니다" 안내와 기존 정보가 뜨는지 수동 확인
