@@ -8,7 +8,7 @@
 Explore (PRD.md)  ->  Plan (Plan.md)  ->  Action (구현)
 ```
 
-1. **Explore**: `PRD.md` 작성/갱신. 도메인 모델, 주문 상태머신, 역할별 권한, 메인 메뉴 5종, 생산라인 계산식 정의 (`05-domain-and-prd.md` 참고). PRD.md 없이 Plan/Action 단계로 넘어가지 않는다.
+1. **Explore**: `PRD.md` 작성/갱신. 도메인 모델, 주문 상태머신, 역할별 권한, 메인 메뉴 5종, 생산라인 계산식 정의 (`domain-and-prd.md` 참고). PRD.md 없이 Plan/Action 단계로 넘어가지 않는다.
 2. **Plan**: `Plan.md` 작성. 모듈/기능 단위 TODO로 분해. 이 단계부터는 로컬 skill `tdd-skill`(`.claude/skills/tdd-skill/SKILL.md`)을 그대로 사용한다 — tdd-skill의 RED 단계(Plan.md 작성 + 실패하는 테스트 + 인간 검토 + 커밋)가 이 Plan 단계에 해당한다.
 3. **Action**: Plan.md에 따라 구현. tdd-skill의 GREEN(최소 구현) → REVIEW(Plan 대비 검토 + 인간 검토 + 커밋) 사이클을 그대로 따른다. Plan.md 범위를 벗어난 구현 금지.
 
@@ -25,6 +25,6 @@ Explore (PRD.md)  ->  Plan (Plan.md)  ->  Action (구현)
 
 ## 참고 문서
 
-- `05-domain-and-prd.md`: Explore 단계 상세 요구사항 (PRD.md 내용)
-- `06-agentic-engineering-process.md`: 본 워크플로우 요구사항 원문
-- `07-implementation-and-cleancode.md`, `08-testing-unit-e2e.md`, `09-claude-md-governance.md`: 후속 요구사항
+- `domain-and-prd.md`: Explore 단계 상세 요구사항 (PRD.md 내용)
+- `agentic-engineering-process.md`: 본 워크플로우 요구사항 원문
+- `implementation-and-cleancode.md`, `testing-unit-e2e.md`, `claude-md-governance.md`: 후속 요구사항
