@@ -53,7 +53,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 22 | view+main | 실행 가능한 main.py 스켈레톤 (조기 실행 확인용, Phase18~20 미완료 메뉴는 TBD) | [phase-22](sample-order-system/phase-22-main-skeleton.md) | [x] |
 | 23 | model | 생산대기큐 확정 스캔 성능 최적화 (FIFO 라인배정 보장 유지) | [phase-23](sample-order-system/phase-23-production-queue-performance.md) | [x] |
 | 24 | view | 콘솔 UI/UX 개선 (출력 포맷만, 로직 변경 없음) | [phase-24](sample-order-system/phase-24-console-ux-polish.md) | [x] |
-| 25 | model+controller+view | 생산라인 실시간 진행 (경과시간 추산 + 조회 화면 전용 스레드 + 예상완료시각) | [phase-25](sample-order-system/phase-25-production-line-live-tick.md) | 보류(Textual 전환에 흡수) |
+| 25 | model+controller+view | 생산라인 실시간 진행 (경과시간 추산 + 조회 화면 전용 스레드 + 상세정보) | [phase-25](sample-order-system/phase-25-production-line-live-tick.md) | 보류 해제, 진행중 (25-A~D) |
 | 26 | main+repository | 기본 제공 시료/재고 초기 데이터 시딩 | [phase-26](sample-order-system/phase-26-default-sample-seed.md) | [x] |
 | 27 | controller+view | 컨트롤러/입력 예외 안전성 강화 (없는 ID/잘못된 입력값 방어) | [phase-27](sample-order-system/phase-27-input-safety-hardening.md) | [x] |
 | 28 | controller | 시료 중복 등록 방지 (덮어쓰기 대신 안내+기존정보 표시) | [phase-28](sample-order-system/phase-28-sample-duplicate-guard.md) | [x] |
@@ -70,7 +70,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 
 Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.
 
-Phase 25는 콘솔(input/print) 구조를 전제로 스레드 기반 실시간 갱신을 설계했으나, view 계층을 Textual로 전면 재작성하기로 결정되어 이 Phase는 지금 구조로 구현하지 않는다 — Textual 전환 PRD/Plan에서 이 기능(생산라인 실시간 진행)을 Textual의 반응형 위젯/타이머로 자연스럽게 흡수한다.
+Phase 25는 애초 "Textual 전환에 흡수" 방침으로 보류했으나, Textual 전환은 범위가 커서 뒤로 미루고 기존 콘솔 구조 개선을 우선 진행하기로 결정되어 보류를 해제했다 — 콘솔(input/print) 구조 그대로, 조회 화면 전용 스레드 기반 실시간 갱신으로 25-A~D 하위 단계에 걸쳐 구현한다 (설계: [phase-25](sample-order-system/phase-25-production-line-live-tick.md)).
 
 ## 테스트 전략
 
