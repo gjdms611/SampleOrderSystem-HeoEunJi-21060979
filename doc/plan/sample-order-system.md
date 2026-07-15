@@ -44,7 +44,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 13 | model | 모니터링 판정: 재고 여유/부족/고갈 | [phase-13](sample-order-system/phase-13-monitoring-judge.md) | [x] |
 | 14 | storage | JSON 파일 raw load/save 공통 유틸 | [phase-14](sample-order-system/phase-14-storage.md) | [x] |
 | 15 | repository | Sample/Inventory CRUD (storage 사용) | [phase-15](sample-order-system/phase-15-repository-sample-inventory.md) | [x] |
-| 16 | repository | Order CRUD (storage 사용) | [phase-16](sample-order-system/phase-16-repository-order.md) | [ ] |
+| 16 | repository | Order CRUD (storage 사용) | [phase-16](sample-order-system/phase-16-repository-order.md) | [x] |
 | 17 | controller | 시료관리 유스케이스 (등록/조회/검색) | [phase-17](sample-order-system/phase-17-controller-sample.md) | [ ] |
 | 18 | controller | 주문 접수/거절/취소 유스케이스 | [phase-18](sample-order-system/phase-18-controller-order-submit.md) | [ ] |
 | 19 | controller | 주문 승인 유스케이스 (재고확인 -> model 전이 + repository 반영) | [phase-19](sample-order-system/phase-19-controller-order-approve.md) | [ ] |

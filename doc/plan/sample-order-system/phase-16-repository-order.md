@@ -13,5 +13,5 @@
   - `find_all(self) -> list[Order]`
 
 ## 완료 조건
-- [ ] Order 저장/조회 테스트 (상태 포함 직렬화/역직렬화 확인)
-- [ ] find_all 테스트
+- [x] Order 저장/조회 테스트 (상태 포함 직렬화/역직렬화 확인)
+- [x] find_all 테스트
