@@ -49,7 +49,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 18 | controller | 주문 접수/거절/취소 유스케이스 | [phase-18](sample-order-system/phase-18-controller-order-submit.md) | [x] |
 | 19 | controller | 주문 승인 유스케이스 (재고확인 -> model 전이 + repository 반영) | [phase-19](sample-order-system/phase-19-controller-order-approve.md) | [x] |
 | 20 | controller | 출고처리/모니터링/생산라인 조회 유스케이스 | [phase-20](sample-order-system/phase-20-controller-release-monitoring-line.md) | [x] |
-| 21 | view+main | 메인 메뉴 5종 콘솔 + 조립 + E2E (PRD 기준 재설계) | [phase-21](sample-order-system/phase-21-view-main-e2e.md) | [ ] |
+| 21 | view+main | 메인 메뉴 5종 콘솔 + 조립 + E2E (PRD 기준 재설계) | [phase-21](sample-order-system/phase-21-view-main-e2e.md) | [x] |
 | 22 | view+main | 실행 가능한 main.py 스켈레톤 (조기 실행 확인용, Phase18~20 미완료 메뉴는 TBD) | [phase-22](sample-order-system/phase-22-main-skeleton.md) | [x] |
 | 23 | model | 생산대기큐 확정 스캔 성능 최적화 (FIFO 라인배정 보장 유지) | [phase-23](sample-order-system/phase-23-production-queue-performance.md) | [ ] |
 | 24 | view | 콘솔 UI/UX 개선 (출력 포맷만, 로직 변경 없음) | [phase-24](sample-order-system/phase-24-console-ux-polish.md) | [ ] |
