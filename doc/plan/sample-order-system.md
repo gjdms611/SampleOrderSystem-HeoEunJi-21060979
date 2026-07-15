@@ -36,7 +36,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 5 | model | Order 상태전이: RESERVED -> REJECTED | [phase-05](sample-order-system/phase-05-order-reject.md) | [x] |
 | 6 | model | Order 상태전이: RESERVED -> CONFIRMED (재고충분) | [phase-06](sample-order-system/phase-06-order-approve-sufficient.md) | [x] |
 | 7 | model | Order 상태전이: RESERVED -> PRODUCING (재고부족, ProductionJob 생성) | [phase-07](sample-order-system/phase-07-order-approve-shortage.md) | [x] |
-| 8 | model | 생산대기큐: FIFO 등록 + 라인(N개) 유휴 시 배정 | [phase-08](sample-order-system/phase-08-production-queue.md) | [ ] |
+| 8 | model | 생산대기큐: FIFO 등록 + 라인(N개) 유휴 시 배정 | [phase-08](sample-order-system/phase-08-production-queue.md) | [x] |
 | 9 | model | 동시생산 실시간 반영 (PRD 6.2, 핵심) | [phase-09](sample-order-system/phase-09-concurrent-production.md) | [ ] |
 | 10 | model | 생산작업 완료 + 잉여 재고 반영 | [phase-10](sample-order-system/phase-10-production-complete-surplus.md) | [ ] |
 | 11 | model | Order 취소 규칙 + 허용 안 된 전이 차단 | [phase-11](sample-order-system/phase-11-order-cancel-guard.md) | [ ] |
