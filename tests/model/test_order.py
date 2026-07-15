@@ -17,3 +17,12 @@ def test_reject_transitions_reserved_to_rejected():
     order.reject()
 
     assert order.status == OrderStatus.REJECTED
+
+
+def test_approve_transitions_reserved_to_confirmed_when_inventory_sufficient():
+    order = Order(order_id="O1", customer_name="Acme", sample_id="S1", quantity=10)
+
+    result = order.approve(inventory_qty_at_approval=10)
+
+    assert result is None
+    assert order.status == OrderStatus.CONFIRMED
