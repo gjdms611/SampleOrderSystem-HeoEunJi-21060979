@@ -119,3 +119,13 @@ def test_list_pending_returns_only_reserved_orders(tmp_path):
     assert len(result) == 1
     assert result[0].order_id == order1.order_id
     assert result[0].status == OrderStatus.RESERVED
+
+
+def test_submit_with_non_positive_quantity_returns_none_and_saves_nothing(tmp_path):
+    controller, order_repo = make_controller(tmp_path)
+    controller.sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+
+    result = controller.submit(customer_name="Acme", sample_id="S1", quantity=0)
+
+    assert result is None
+    assert order_repo.find_all() == []

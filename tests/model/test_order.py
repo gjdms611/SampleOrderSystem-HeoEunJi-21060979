@@ -1,5 +1,15 @@
+import pytest
+
 from model.order import Order, OrderStatus
 from model.sample import Sample
+
+
+def test_order_creation_rejects_non_positive_quantity():
+    with pytest.raises(ValueError):
+        Order(order_id="O1", customer_name="Acme", sample_id="S1", quantity=0)
+
+    with pytest.raises(ValueError):
+        Order(order_id="O1", customer_name="Acme", sample_id="S1", quantity=-1)
 
 
 def test_order_creation_sets_status_reserved():
