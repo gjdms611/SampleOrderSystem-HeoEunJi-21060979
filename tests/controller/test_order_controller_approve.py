@@ -55,6 +55,38 @@ def test_approve_when_inventory_not_registered_treats_it_as_zero_and_producing(t
     assert queue.lines[0].shortage == 10
 
 
+def test_approve_with_sufficient_inventory_deducts_order_quantity_from_inventory(tmp_path):
+    controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
+    sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+    inventory_repo.save(Inventory("S1", 20))
+    order = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
+
+    controller.approve(order.order_id)
+
+    assert inventory_repo.find_by_sample_id("S1").quantity == 10
+
+
+def test_approve_with_insufficient_inventory_zeroes_out_inventory(tmp_path):
+    controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
+    sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+    inventory_repo.save(Inventory("S1", 3))
+    order = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
+
+    controller.approve(order.order_id)
+
+    assert inventory_repo.find_by_sample_id("S1").quantity == 0
+
+
+def test_approve_when_inventory_not_registered_does_not_create_inventory_record(tmp_path):
+    controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
+    sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+    order = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
+
+    controller.approve(order.order_id)
+
+    assert inventory_repo.find_by_sample_id("S1") is None
+
+
 def test_approve_on_non_reserved_order_returns_none_without_raising(tmp_path):
     controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
     sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
