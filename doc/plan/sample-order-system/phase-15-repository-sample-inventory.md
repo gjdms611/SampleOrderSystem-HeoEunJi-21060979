@@ -21,7 +21,7 @@
 - 존재하지 않는 ID 조회 시 `None`
 
 ## 완료 조건
-- [ ] Sample 저장/조회 테스트
-- [ ] Sample 검색 테스트
-- [ ] Inventory 저장/조회 테스트
-- [ ] 동일 ID 덮어쓰기 테스트
+- [x] Sample 저장/조회 테스트
+- [x] Sample 검색 테스트
+- [x] Inventory 저장/조회 테스트
+- [x] 동일 ID 덮어쓰기 테스트
