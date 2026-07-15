@@ -1,5 +1,6 @@
 from controller.order_controller import OrderController
 from model.order import OrderStatus
+from model.production_queue import ProductionQueue
 from repository.inventory_repository import InventoryRepository
 from repository.order_repository import OrderRepository
 from repository.sample_repository import SampleRepository
@@ -9,7 +10,8 @@ def make_controller(tmp_path):
     order_repo = OrderRepository(str(tmp_path / "orders.json"))
     inventory_repo = InventoryRepository(str(tmp_path / "inventories.json"))
     sample_repo = SampleRepository(str(tmp_path / "samples.json"))
-    return OrderController(order_repo, inventory_repo, sample_repo), order_repo
+    production_queue = ProductionQueue(line_count=1)
+    return OrderController(order_repo, inventory_repo, sample_repo, production_queue), order_repo
 
 
 def test_submit_creates_reserved_order_with_sequential_id_and_saves_it(tmp_path):
