@@ -90,3 +90,17 @@ def test_submit_with_unregistered_sample_id_returns_none_and_saves_nothing(tmp_p
 
     assert result is None
     assert order_repo.find_all() == []
+
+
+def test_list_all_returns_all_saved_orders(tmp_path):
+    controller, _order_repo = make_controller(tmp_path)
+    controller.sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+    controller.sample_repo.save(Sample("S2", "Wafer-B", 3.0, 0.8))
+    order1 = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
+    order2 = controller.submit(customer_name="Globex", sample_id="S2", quantity=5)
+
+    result = controller.list_all()
+
+    assert len(result) == 2
+    result_ids = {order.order_id for order in result}
+    assert result_ids == {order1.order_id, order2.order_id}
