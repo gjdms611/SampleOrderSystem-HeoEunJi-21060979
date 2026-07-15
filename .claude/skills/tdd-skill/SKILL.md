@@ -308,11 +308,13 @@ TDD가 바로 실용적이다:
 
 **버그:** 빈 이메일이 허용됨
 
-**RED — Plan.md**
+**RED — `doc/plan/form-validation.md`의 해당 Phase**
 ```
-목표: submit_form이 빈 이메일/공백만 있는 이메일을 거부하고
-      {"error": "Email required"}를 반환하게 한다.
-접근: data.get("email", "")로 값을 꺼내 .strip()이 falsy면 에러 반환.
+### Phase 2: 빈 이메일 거부 [ ]
+설계(Design):
+  목표: submit_form이 빈 이메일/공백만 있는 이메일을 거부하고
+        {"error": "Email required"}를 반환하게 한다.
+  접근: data.get("email", "")로 값을 꺼내 .strip()이 falsy면 에러 반환.
 ```
 
 **RED — 실패하는 테스트**
@@ -328,7 +330,7 @@ $ pytest
 FAILED: KeyError: 'error'   (또는 'Email required'를 기대했으나 다른 값)
 ```
 
-**RED — 인간 검토 + 커밋**: Plan.md와 실패하는 테스트를 보여주고 승인받은 뒤 커밋한다.
+**RED — 인간 검토 + 커밋**: 이 Phase의 설계와 실패하는 테스트를 보여주고 승인받은 뒤 커밋한다.
 
 **GREEN**
 ```python
