@@ -55,6 +55,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 24 | view | 콘솔 UI/UX 개선 (출력 포맷만, 로직 변경 없음) | [phase-24](sample-order-system/phase-24-console-ux-polish.md) | [x] |
 | 25 | model+controller+view | 생산라인 실시간 진행 (경과시간 추산 + 조회 화면 전용 스레드 + 예상완료시각) | [phase-25](sample-order-system/phase-25-production-line-live-tick.md) | 보류(Textual 전환에 흡수) |
 | 26 | main+repository | 기본 제공 시료/재고 초기 데이터 시딩 | [phase-26](sample-order-system/phase-26-default-sample-seed.md) | [x] |
+| 27 | controller+view | 컨트롤러/입력 예외 안전성 강화 (없는 ID/잘못된 입력값 방어) | [phase-27](sample-order-system/phase-27-input-safety-hardening.md) | [ ] |
 
 Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.
 
