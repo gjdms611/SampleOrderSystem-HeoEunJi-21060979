@@ -42,17 +42,20 @@ def prompt_int(message: str) -> int:
 
 
 def prompt_sample_register():
-    sample_id = console.input("시료ID: ").strip()
+    sample_id = console.input("시료ID (취소하려면 빈 값으로 Enter): ").strip()
+    if not sample_id:
+        return None, None, None, None
     name = console.input("이름: ").strip()
     avg_production_time = prompt_float("평균생산시간: ")
     yield_rate = prompt_float("수율(0~1): ")
     return sample_id, name, avg_production_time, yield_rate
 
 
-def prompt_search_keyword() -> str:
-    return console.input(
-        "검색 키워드 (시료 이름의 일부를 입력하세요. 예: Wafer-A, Wafer, Chip): "
+def prompt_search_keyword():
+    keyword = console.input(
+        "검색 키워드 (시료 이름의 일부를 입력하세요. 예: Wafer-A, Wafer, Chip. 취소하려면 빈 값으로 Enter): "
     ).strip()
+    return keyword if keyword else None
 
 
 def show_sample(sample) -> None:
@@ -77,14 +80,17 @@ def show_samples(samples) -> None:
 
 
 def prompt_order_submit():
-    customer_name = console.input("고객명: ").strip()
+    customer_name = console.input("고객명 (취소하려면 빈 값으로 Enter): ").strip()
+    if not customer_name:
+        return None, None, None
     sample_id = console.input("시료ID: ").strip()
     quantity = prompt_int("수량: ")
     return customer_name, sample_id, quantity
 
 
-def prompt_order_id() -> str:
-    return console.input("주문ID: ").strip()
+def prompt_order_id():
+    order_id = console.input("주문ID (취소하려면 빈 값으로 Enter): ").strip()
+    return order_id if order_id else None
 
 
 def show_order(order) -> None:

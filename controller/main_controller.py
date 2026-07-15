@@ -30,6 +30,9 @@ class MainController:
         action = input("1. 등록 2. 조회 3. 검색\n선택> ").strip()
         if action == "1":
             sample_id, name, avg_production_time, yield_rate = console_view.prompt_sample_register()
+            if sample_id is None:
+                console_view.show_message("취소되었습니다.")
+                return
             sample, is_new = self.sample_controller.register(sample_id, name, avg_production_time, yield_rate)
             if not is_new:
                 console_view.show_message("이미 등록된 시료ID입니다. 기존 정보:")
@@ -39,6 +42,9 @@ class MainController:
             console_view.show_samples(samples)
         elif action == "3":
             keyword = console_view.prompt_search_keyword()
+            if keyword is None:
+                console_view.show_message("취소되었습니다.")
+                return
             samples = self.sample_controller.search(keyword)
             console_view.show_samples(samples)
         else:
@@ -48,18 +54,30 @@ class MainController:
         action = input("1. 접수 2. 승인 3. 거절 4. 취소\n선택> ").strip()
         if action == "1":
             customer_name, sample_id, quantity = console_view.prompt_order_submit()
+            if customer_name is None:
+                console_view.show_message("취소되었습니다.")
+                return
             order = self.order_controller.submit(customer_name, sample_id, quantity)
             console_view.show_order(order)
         elif action == "2":
             order_id = console_view.prompt_order_id()
+            if order_id is None:
+                console_view.show_message("취소되었습니다.")
+                return
             order = self.order_controller.approve(order_id)
             console_view.show_order(order)
         elif action == "3":
             order_id = console_view.prompt_order_id()
+            if order_id is None:
+                console_view.show_message("취소되었습니다.")
+                return
             order = self.order_controller.reject(order_id)
             console_view.show_order(order)
         elif action == "4":
             order_id = console_view.prompt_order_id()
+            if order_id is None:
+                console_view.show_message("취소되었습니다.")
+                return
             order = self.order_controller.cancel(order_id)
             console_view.show_order(order)
         else:
@@ -78,6 +96,9 @@ class MainController:
 
     def _handle_release_menu(self) -> None:
         order_id = console_view.prompt_order_id()
+        if order_id is None:
+            console_view.show_message("취소되었습니다.")
+            return
         order = self.order_controller.release_order(order_id)
         console_view.show_order(order)
 
