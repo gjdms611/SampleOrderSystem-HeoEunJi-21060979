@@ -49,3 +49,23 @@ def test_save_with_same_id_overwrites_existing_entry(tmp_path):
     assert result.name == "Wafer-A-Updated"
     assert result.avg_production_time == 3.5
     assert result.yield_rate == 0.7
+
+
+def test_find_all_returns_empty_list_when_no_samples(tmp_path):
+    path = tmp_path / "samples.json"
+    repo = SampleRepository(str(path))
+
+    result = repo.find_all()
+
+    assert result == []
+
+
+def test_find_all_returns_all_saved_samples(tmp_path):
+    path = tmp_path / "samples.json"
+    repo = SampleRepository(str(path))
+    repo.save(Sample("S001", "Wafer-A", 2.5, 0.9))
+    repo.save(Sample("S002", "Wafer-B", 3.0, 0.8))
+
+    result = repo.find_all()
+
+    assert {s.sample_id for s in result} == {"S001", "S002"}
