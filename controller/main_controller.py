@@ -43,7 +43,7 @@ class MainController:
                 return
             if not is_new:
                 console_view.show_message("이미 등록된 시료ID입니다. 기존 정보:")
-            console_view.show_sample(sample)
+            console_view.show_sample((sample, 0))
         elif action == "2":
             samples = self.sample_controller.list_all()
             console_view.show_samples(samples)

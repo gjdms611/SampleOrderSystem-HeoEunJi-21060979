@@ -58,11 +58,11 @@ def prompt_search_keyword():
     return keyword if keyword else None
 
 
-def show_sample(sample) -> None:
-    if sample is None:
+def show_sample(sample_with_quantity) -> None:
+    if sample_with_quantity is None:
         show_message("해당 시료를 찾을 수 없습니다.", error=True)
         return
-    show_samples([sample])
+    show_samples([sample_with_quantity])
 
 
 def show_samples(samples) -> None:
@@ -74,8 +74,11 @@ def show_samples(samples) -> None:
     table.add_column("이름")
     table.add_column("평균생산시간")
     table.add_column("수율")
-    for sample in samples:
-        table.add_row(sample.sample_id, sample.name, str(sample.avg_production_time), str(sample.yield_rate))
+    table.add_column("재고")
+    for sample, quantity in samples:
+        table.add_row(
+            sample.sample_id, sample.name, str(sample.avg_production_time), str(sample.yield_rate), str(quantity)
+        )
     console.print(table)
 
 

@@ -35,7 +35,7 @@ def main():
 
     seed_default_samples(sample_repo, inventory_repo)
 
-    sample_controller = SampleController(sample_repo)
+    sample_controller = SampleController(sample_repo, inventory_repo)
     order_controller = OrderController(order_repo, inventory_repo, sample_repo, production_queue)
     monitoring_controller = MonitoringController(order_repo, inventory_repo)
     line_controller = ProductionLineController(production_queue)

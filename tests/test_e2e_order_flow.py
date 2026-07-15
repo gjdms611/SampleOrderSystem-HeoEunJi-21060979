@@ -16,7 +16,7 @@ def make_all(tmp_path):
     order_repo = OrderRepository(str(tmp_path / "orders.json"))
     queue = ProductionQueue(line_count=1)
 
-    sample_controller = SampleController(sample_repo)
+    sample_controller = SampleController(sample_repo, inventory_repo)
     order_controller = OrderController(order_repo, inventory_repo, sample_repo, queue)
     monitoring_controller = MonitoringController(order_repo, inventory_repo)
     line_controller = ProductionLineController(queue)

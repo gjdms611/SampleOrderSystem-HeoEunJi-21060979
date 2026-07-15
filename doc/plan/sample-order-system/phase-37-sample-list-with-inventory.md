@@ -19,5 +19,5 @@
 
 ## 완료 조건
 
-- [ ] `SampleController.list_all()`/`search()`/`get()`이 각 시료의 재고수량을 포함한 `(sample, quantity)` 형태로 반환하는지 테스트 (재고 미등록 시 0)
-- [ ] `python main.py`로 시료 조회/검색/등록 결과에 재고 컬럼이 보이는지 수동 확인
+- [x] `SampleController.list_all()`/`search()`/`get()`이 각 시료의 재고수량을 포함한 `(sample, quantity)` 형태로 반환하는지 테스트 (재고 미등록 시 0)
+- [x] `python main.py`로 시료 조회/검색/등록 결과에 재고 컬럼이 보이는지 수동 확인
