@@ -59,7 +59,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 28 | controller | 시료 중복 등록 방지 (덮어쓰기 대신 안내+기존정보 표시) | [phase-28](sample-order-system/phase-28-sample-duplicate-guard.md) | [x] |
 | 29 | view | 시료 검색 키워드 입력 안내 예시 추가 | [phase-29](sample-order-system/phase-29-search-keyword-hint.md) | [x] |
 | 30 | view+controller | 입력 중 취소(뒤로가기) 지원 (빈 입력으로 상위 메뉴 복귀) | [phase-30](sample-order-system/phase-30-cancel-during-input.md) | [x] |
-| 31 | controller | 주문 승인 시 재고 차감 (치명적 버그 수정) | [phase-31](sample-order-system/phase-31-inventory-deduction-on-approve.md) | [ ] |
+| 31 | controller | 주문 승인 시 재고 차감 (치명적 버그 수정) | [phase-31](sample-order-system/phase-31-inventory-deduction-on-approve.md) | [x] |
 | 32 | controller+view | 주문 전체 목록 조회 메뉴 추가 | [phase-32](sample-order-system/phase-32-order-list-all.md) | [ ] |
 
 Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.

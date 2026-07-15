@@ -76,8 +76,15 @@ class OrderController:
             return None
 
         if job is not None:
+            if inventory is not None:
+                inventory.quantity = 0
+                self.inventory_repo.save(inventory)
             self.production_queue.enqueue(job)
             self.production_queue.assign_idle_lines()
+        else:
+            if inventory is not None:
+                inventory.quantity -= order.quantity
+                self.inventory_repo.save(inventory)
 
         self.order_repo.save(order)
         return order

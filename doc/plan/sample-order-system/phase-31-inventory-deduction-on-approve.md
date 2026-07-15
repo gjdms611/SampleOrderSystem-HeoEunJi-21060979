@@ -26,7 +26,7 @@ PRD-코드 대조검증에서 발견된 치명적 버그: `OrderController.appro
 
 ## 완료 조건
 
-- [ ] 재고충분 승인 시 `inventory.quantity`가 `order.quantity`만큼 차감되어 저장되는지 테스트
-- [ ] 재고부족 승인 시 `inventory.quantity`가 0으로 저장되는지 테스트
-- [ ] 재고 레코드가 아예 없던 상태에서 재고부족 승인 시 새 재고 레코드가 생성되지 않는지 테스트
-- [ ] 기존 E2E 시나리오(`tests/test_e2e_order_flow.py`)가 갱신된 재고값 기준으로도 여전히 통과하는지 확인
+- [x] 재고충분 승인 시 `inventory.quantity`가 `order.quantity`만큼 차감되어 저장되는지 테스트
+- [x] 재고부족 승인 시 `inventory.quantity`가 0으로 저장되는지 테스트
+- [x] 재고 레코드가 아예 없던 상태에서 재고부족 승인 시 새 재고 레코드가 생성되지 않는지 테스트
+- [x] 기존 E2E 시나리오(`tests/test_e2e_order_flow.py`)가 갱신된 재고값 기준으로도 여전히 통과하는지 확인
