@@ -10,5 +10,6 @@
 - Phase 8~10의 `ProductionQueue`를 controller 계층에서 보유(주입)하여 승인 시 `enqueue` + `assign_idle_lines` 호출.
 
 ## 완료 조건
-- [ ] 재고충분 승인 유스케이스 테스트 (CONFIRMED로 저장)
-- [ ] 재고부족 승인 유스케이스 테스트 (PRODUCING으로 저장 + 큐 등록 확인)
+- [x] 재고충분 승인 유스케이스 테스트 (CONFIRMED로 저장)
+- [x] 재고부족 승인 유스케이스 테스트 (PRODUCING으로 저장 + 큐 등록 확인)
+- [x] 잘못된 상태에서 approve 호출 시 예외가 컨트롤러 밖으로 새지 않고 처리되는지 테스트 (Phase18과 동일 패턴)
