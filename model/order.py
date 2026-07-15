@@ -16,3 +16,6 @@ class Order:
         self.sample_id = sample_id
         self.quantity = quantity
         self.status = OrderStatus.RESERVED
+
+    def reject(self) -> None:
+        self.status = OrderStatus.REJECTED

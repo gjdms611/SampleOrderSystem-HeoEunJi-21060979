@@ -10,4 +10,4 @@
 - 이 Phase는 정상 경로만 다룸. 잘못된 시작 상태에서의 호출 차단은 Phase 11에서 공통 가드로 처리.
 
 ## 완료 조건
-- [ ] RESERVED -> REJECTED 전이 테스트
+- [x] RESERVED -> REJECTED 전이 테스트
