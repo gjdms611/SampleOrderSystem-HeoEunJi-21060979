@@ -33,10 +33,6 @@ def prompt_sample_register():
     return sample_id, name, avg_production_time, yield_rate
 
 
-def prompt_sample_id() -> str:
-    return console.input("조회할 시료ID: ").strip()
-
-
 def prompt_search_keyword() -> str:
     return console.input("검색 키워드: ").strip()
 

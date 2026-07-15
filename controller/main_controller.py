@@ -33,9 +33,8 @@ class MainController:
             sample = self.sample_controller.register(sample_id, name, avg_production_time, yield_rate)
             console_view.show_sample(sample)
         elif action == "2":
-            sample_id = console_view.prompt_sample_id()
-            sample = self.sample_controller.get(sample_id)
-            console_view.show_sample(sample)
+            samples = self.sample_controller.list_all()
+            console_view.show_samples(samples)
         elif action == "3":
             keyword = console_view.prompt_search_keyword()
             samples = self.sample_controller.search(keyword)

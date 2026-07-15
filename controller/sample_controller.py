@@ -13,5 +13,8 @@ class SampleController:
     def get(self, sample_id):
         return self.repo.find_by_id(sample_id)
 
+    def list_all(self):
+        return self.repo.find_all()
+
     def search(self, keyword):
         return self.repo.search(keyword)

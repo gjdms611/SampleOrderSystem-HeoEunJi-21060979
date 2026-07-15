@@ -58,3 +58,15 @@ def test_search_returns_matching_samples_by_keyword(tmp_path):
     result = controller.search("Wafer")
 
     assert {s.sample_id for s in result} == {"S001", "S002"}
+
+
+def test_list_all_returns_every_registered_sample(tmp_path):
+    path = tmp_path / "samples.json"
+    repo = SampleRepository(str(path))
+    controller = SampleController(repo)
+    controller.register("S001", "Wafer-A", 2.5, 0.9)
+    controller.register("S002", "Wafer-B", 3.0, 0.8)
+
+    result = controller.list_all()
+
+    assert {s.sample_id for s in result} == {"S001", "S002"}
