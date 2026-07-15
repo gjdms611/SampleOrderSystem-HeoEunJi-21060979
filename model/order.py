@@ -28,6 +28,9 @@ class Order:
             self.status = OrderStatus.CONFIRMED
             return None
 
+        return self._start_production(inventory_qty_at_approval, sample)
+
+    def _start_production(self, inventory_qty_at_approval: int, sample) -> ProductionJob:
         shortage = calc_shortage(self.quantity, inventory_qty_at_approval)
         actual_qty = calc_actual_production_qty(shortage, sample.yield_rate)
         total_production_time = calc_total_production_time(sample.avg_production_time, actual_qty)
