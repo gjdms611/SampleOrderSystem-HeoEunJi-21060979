@@ -2,9 +2,6 @@
 
 가상회사 **S-Semi**의 반도체 시료 생산주문관리 시스템이다. 고객 요청(이메일 등 시스템 외부)을 주문담당자가 시스템에 접수하면, 생산담당자가 승인/거절하고, 재고가 부족하면 생산라인에 자동 등록되어 생산 완료 후 출고까지 이어지는 흐름을 관리한다.
 
-- 도메인 요구사항 전체: [`doc/prd/sample-order-system.md`](doc/prd/sample-order-system.md)
-- 구현 설계(Phase별): [`doc/plan/sample-order-system.md`](doc/plan/sample-order-system.md)
-
 ## 무엇을 관리하는 시스템인가
 
 ```mermaid
@@ -25,7 +22,7 @@ flowchart TD
 
 ## 아키텍처
 
-`PoC/ConsoleMVC`(model/view/controller)와 `PoC/DataPersistence`(storage/repository) 두 PoC의 검증 결과를 합쳐 5계층으로 구성한다.
+MVC(model/view/controller)아키텍쳐를 사용하며, 데이터 영속성 보장을 위해  storage/repository 두 계층을 추가해 총 5계층으로 구성한다.
 
 ```
 main.py       - model/view/controller/repository 조립 진입점
@@ -37,14 +34,6 @@ storage/      - JSON 파일 raw load/save. 순수 파일 IO.
 ```
 
 의존 방향: `main.py → view/controller 조립 → controller → model`, `controller → repository → storage`. `model`은 다른 계층을 모른다.
-
-## 현재 진행 상태
-
-이 프로젝트는 Explore(PRD) → Plan(Phase 설계) → Action(Phase별 TDD 구현) 순서로 진행 중이다. 전체 21개 Phase 중 `model`/`storage`/`repository` 계층 대부분과 `controller`의 시료관리(Phase17)까지 구현되어 있고, 주문 접수/승인/출고 유스케이스(Phase 18~20)는 아직이다.
-
-다만 Phase 21(전체 메뉴 조립)이 끝나길 기다리지 않아도 지금 바로 실행해볼 수 있도록, 임시 실행 골격(Phase 22 — `main.py`)이 먼저 만들어져 있다. 메인 메뉴 중 **1. 시료관리(등록/조회/검색)만 실제로 동작**하고, 나머지 메뉴(주문 접수/승인/출고/모니터링)는 아직 구현 전이라 선택하면 `TBD` 안내만 뜬다. Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴가 실제로 연결된다.
-
-진행 상황은 [`doc/plan/sample-order-system.md`](doc/plan/sample-order-system.md)의 Phase 목록 체크박스에서 실시간으로 확인할 수 있다.
 
 ## 실행 방법
 
