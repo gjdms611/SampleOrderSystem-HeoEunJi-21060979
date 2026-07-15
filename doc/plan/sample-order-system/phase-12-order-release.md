@@ -9,4 +9,4 @@
 - 시그니처: `Order.release(self) -> None`
 
 ## 완료 조건
-- [ ] CONFIRMED -> RELEASE 전이 테스트
+- [x] CONFIRMED -> RELEASE 전이 테스트 (그 외 상태에서 거부하는 가드 포함)
