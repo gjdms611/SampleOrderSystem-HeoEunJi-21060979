@@ -58,3 +58,25 @@ def test_assign_idle_lines_keeps_extra_jobs_waiting_when_lines_full():
 
     assert queue.lines == [job1]
     assert queue.waiting == [job2]
+
+
+def test_assign_idle_lines_sets_started_at_on_assigned_job():
+    queue = ProductionQueue(line_count=1)
+    job1 = make_job("O1")
+    assert job1.started_at is None
+    queue.enqueue(job1)
+
+    queue.assign_idle_lines()
+
+    assert job1.started_at is not None
+
+
+def test_assign_idle_lines_does_not_set_started_at_on_waiting_job():
+    queue = ProductionQueue(line_count=1)
+    job1, job2 = make_job("O1"), make_job("O2")
+    queue.enqueue(job1)
+    queue.enqueue(job2)
+
+    queue.assign_idle_lines()
+
+    assert job2.started_at is None
