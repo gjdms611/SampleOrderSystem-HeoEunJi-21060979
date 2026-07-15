@@ -32,6 +32,15 @@ class OrderController:
         self.order_repo.save(order)
         return order
 
+    def release_order(self, order_id):
+        order = self.order_repo.find_by_id(order_id)
+        try:
+            order.release()
+        except InvalidOrderTransitionError:
+            return None
+        self.order_repo.save(order)
+        return order
+
     def approve(self, order_id):
         order = self.order_repo.find_by_id(order_id)
         inventory = self.inventory_repo.find_by_sample_id(order.sample_id)

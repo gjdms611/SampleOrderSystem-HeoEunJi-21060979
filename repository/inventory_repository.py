@@ -18,3 +18,7 @@ class InventoryRepository:
             if r["sample_id"] == sample_id:
                 return Inventory(r["sample_id"], r["quantity"])
         return None
+
+    def find_all(self):
+        records = load(self.file_path)
+        return [Inventory(r["sample_id"], r["quantity"]) for r in records]
