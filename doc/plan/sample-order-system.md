@@ -54,7 +54,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 23 | model | 생산대기큐 확정 스캔 성능 최적화 (FIFO 라인배정 보장 유지) | [phase-23](sample-order-system/phase-23-production-queue-performance.md) | [x] |
 | 24 | view | 콘솔 UI/UX 개선 (출력 포맷만, 로직 변경 없음) | [phase-24](sample-order-system/phase-24-console-ux-polish.md) | [x] |
 | 25 | model+controller+view | 생산라인 실시간 진행 (경과시간 추산 + 조회 화면 전용 스레드 + 예상완료시각) | [phase-25](sample-order-system/phase-25-production-line-live-tick.md) | 보류(Textual 전환에 흡수) |
-| 26 | main+repository | 기본 제공 시료/재고 초기 데이터 시딩 | [phase-26](sample-order-system/phase-26-default-sample-seed.md) | [ ] |
+| 26 | main+repository | 기본 제공 시료/재고 초기 데이터 시딩 | [phase-26](sample-order-system/phase-26-default-sample-seed.md) | [x] |
 
 Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.
 

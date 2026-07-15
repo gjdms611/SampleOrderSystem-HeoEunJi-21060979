@@ -23,7 +23,7 @@
 
 ## 완료 조건
 
-- [ ] `SampleRepository.find_all()` 테스트
-- [ ] 시료가 비어있을 때 `seed_default_samples` 호출 시 5종이 등록되는지 테스트
-- [ ] 이미 시료가 하나라도 있으면 `seed_default_samples`가 아무것도 하지 않는지 테스트
-- [ ] `python main.py`로 최초 실행 시 시료관리 메뉴에서 5종이 바로 조회되는지 수동 확인
+- [x] `SampleRepository.find_all()` 테스트
+- [x] 시료가 비어있을 때 `seed_default_samples` 호출 시 5종이 등록되는지 테스트
+- [x] 이미 시료가 하나라도 있으면 `seed_default_samples`가 아무것도 하지 않는지 테스트
+- [x] `python main.py`로 최초 실행 시 시료관리 메뉴에서 5종이 바로 조회되는지 수동 확인

@@ -33,3 +33,7 @@ class SampleRepository:
             for r in records
             if keyword in r["name"]
         ]
+
+    def find_all(self):
+        records = load(self.file_path)
+        return [Sample(r["sample_id"], r["name"], r["avg_production_time"], r["yield_rate"]) for r in records]
