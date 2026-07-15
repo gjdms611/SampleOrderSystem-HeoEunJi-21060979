@@ -65,6 +65,8 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 34 | model+controller+view | 도메인 값 검증 예외처리(시료등록 ValueError) + 주문 수량 검증 | [phase-34](sample-order-system/phase-34-domain-validation-safety.md) | [x] |
 | 35 | controller | 승인/거절/취소 진입시 대기목록 먼저 표시 + 서브메뉴 취소 옵션 | [phase-35](sample-order-system/phase-35-show-pending-before-action.md) | [x] |
 | 36 | controller | 주문ID 포맷 변경 (O1 → ORD-001, O/0 혼동 방지) | [phase-36](sample-order-system/phase-36-order-id-format.md) | [x] |
+| 37 | controller+view | 시료 조회/검색 결과에 재고수량 포함 | [phase-37](sample-order-system/phase-37-sample-list-with-inventory.md) | [ ] |
+| 38 | controller | 주문 상태별 카운트에 0건 상태도 전부 표시 | [phase-38](sample-order-system/phase-38-status-count-all-statuses.md) | [ ] |
 
 Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.
 
