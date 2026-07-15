@@ -27,8 +27,11 @@ class MainController:
                 console_view.show_message("잘못된 선택입니다.")
 
     def _handle_sample_menu(self) -> None:
-        action = input("1. 등록 2. 조회 3. 검색\n선택> ").strip()
-        if action == "1":
+        action = input("1. 등록 2. 조회 3. 검색 0. 취소\n선택> ").strip()
+        if action == "0":
+            console_view.show_message("취소되었습니다.")
+            return
+        elif action == "1":
             sample_id, name, avg_production_time, yield_rate = console_view.prompt_sample_register()
             if sample_id is None:
                 console_view.show_message("취소되었습니다.")
@@ -55,8 +58,11 @@ class MainController:
             console_view.show_message("잘못된 선택입니다.")
 
     def _handle_order_menu(self) -> None:
-        action = input("1. 접수 2. 승인 3. 거절 4. 취소 5. 전체조회 6. 승인대기 조회\n선택> ").strip()
-        if action == "1":
+        action = input("1. 접수 2. 승인 3. 거절 4. 취소 5. 전체조회 6. 승인대기 조회 0. 취소\n선택> ").strip()
+        if action == "0":
+            console_view.show_message("취소되었습니다.")
+            return
+        elif action == "1":
             customer_name, sample_id, quantity = console_view.prompt_order_submit()
             if customer_name is None:
                 console_view.show_message("취소되었습니다.")
@@ -64,6 +70,7 @@ class MainController:
             order = self.order_controller.submit(customer_name, sample_id, quantity)
             console_view.show_order(order)
         elif action == "2":
+            console_view.show_orders(self.order_controller.list_pending())
             order_id = console_view.prompt_order_id()
             if order_id is None:
                 console_view.show_message("취소되었습니다.")
@@ -71,6 +78,7 @@ class MainController:
             order = self.order_controller.approve(order_id)
             console_view.show_order(order)
         elif action == "3":
+            console_view.show_orders(self.order_controller.list_pending())
             order_id = console_view.prompt_order_id()
             if order_id is None:
                 console_view.show_message("취소되었습니다.")
@@ -78,6 +86,7 @@ class MainController:
             order = self.order_controller.reject(order_id)
             console_view.show_order(order)
         elif action == "4":
+            console_view.show_orders(self.order_controller.list_pending())
             order_id = console_view.prompt_order_id()
             if order_id is None:
                 console_view.show_message("취소되었습니다.")
@@ -94,8 +103,11 @@ class MainController:
             console_view.show_message("잘못된 선택입니다.")
 
     def _handle_monitoring_menu(self) -> None:
-        action = input("1. 주문상태별 카운트 2. 재고 판정\n선택> ").strip()
-        if action == "1":
+        action = input("1. 주문상태별 카운트 2. 재고 판정 0. 취소\n선택> ").strip()
+        if action == "0":
+            console_view.show_message("취소되었습니다.")
+            return
+        elif action == "1":
             counts = self.monitoring_controller.count_orders_by_status()
             console_view.show_status_counts(counts)
         elif action == "2":
