@@ -50,6 +50,9 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 19 | controller | 주문 승인 유스케이스 (재고확인 -> model 전이 + repository 반영) | [phase-19](sample-order-system/phase-19-controller-order-approve.md) | [ ] |
 | 20 | controller | 출고처리/모니터링/생산라인 조회 유스케이스 | [phase-20](sample-order-system/phase-20-controller-release-monitoring-line.md) | [ ] |
 | 21 | view+main | 메인 메뉴 5종 콘솔 + 조립 + E2E | [phase-21](sample-order-system/phase-21-view-main-e2e.md) | [ ] |
+| 22 | view+main | 실행 가능한 main.py 스켈레톤 (조기 실행 확인용, Phase18~20 미완료 메뉴는 TBD) | [phase-22](sample-order-system/phase-22-main-skeleton.md) | [ ] |
+
+Phase 22는 Phase 21을 대체하지 않는다 — Phase 17만 끝난 지금 시점에 수동으로 돌려볼 수 있는 임시 실행 골격이며, Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴를 실제로 연결한다.
 
 ## 테스트 전략
 
