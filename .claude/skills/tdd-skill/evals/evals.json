@@ -1,0 +1,26 @@
+{
+  "skill_name": "tdd-skill",
+  "evals": [
+    {
+      "id": 1,
+      "name": "bowling-game",
+      "prompt": "볼링 게임 Game 클래스 구현해줘. roll(pins), score() 메서드 필요해",
+      "expected_output": "Game.roll(pins)와 Game.score()를 구현. 각 시나리오(open frame, spare, strike, perfect game, 10th frame bonus)마다 실패하는 테스트를 먼저 작성하고, red 확인 후 최소 코드로 green을 만드는 과정이 드러나야 함.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "retry-operation",
+      "prompt": "retry_operation 함수 만들어줘. 실패하면 3번까지 재시도",
+      "expected_output": "실제 재시도 동작을 검증하는 실패하는 테스트를 먼저 작성 (mock 남용 없이), red 확인 후 최소 구현으로 통과시킴.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "empty-email-bug",
+      "prompt": "submit_form에서 빈 이메일이 허용되는 버그 고쳐줘",
+      "expected_output": "버그를 재현하는 실패하는 테스트를 먼저 작성, red 확인 후 최소 수정으로 통과시킴.",
+      "files": []
+    }
+  ]
+}
