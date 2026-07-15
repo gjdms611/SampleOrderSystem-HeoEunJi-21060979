@@ -37,9 +37,10 @@ storage/      - JSON 파일 raw load/save. 순수 파일 IO.
 
 ## 실행 방법
 
-표준 라이브러리만 사용하므로 별도 설치 없이 실행 가능하다. 레포 루트(`SampleOrderSystem/`)에서 실행한다.
+콘솔 출력에 [rich](https://github.com/Textualize/rich)를 사용한다. 최초 1회 설치 후 실행한다. 레포 루트(`SampleOrderSystem/`)에서 실행한다.
 
 ```bash
+pip install -r requirements.txt
 python main.py
 ```
 
