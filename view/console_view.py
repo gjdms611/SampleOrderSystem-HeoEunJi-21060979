@@ -50,7 +50,9 @@ def prompt_sample_register():
 
 
 def prompt_search_keyword() -> str:
-    return console.input("검색 키워드: ").strip()
+    return console.input(
+        "검색 키워드 (시료 이름의 일부를 입력하세요. 예: Wafer-A, Wafer, Chip): "
+    ).strip()
 
 
 def show_sample(sample) -> None:
