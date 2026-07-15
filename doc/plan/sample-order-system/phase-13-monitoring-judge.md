@@ -12,6 +12,6 @@
 - 규칙: `inventory_qty == 0` → DEPLETED, `0 < inventory_qty < demand_total` → SHORTAGE, `inventory_qty >= demand_total` → SUFFICIENT
 
 ## 완료 조건
-- [ ] DEPLETED 판정 테스트
-- [ ] SHORTAGE 판정 테스트
-- [ ] SUFFICIENT 판정 테스트
+- [x] DEPLETED 판정 테스트
+- [x] SHORTAGE 판정 테스트
+- [x] SUFFICIENT 판정 테스트
