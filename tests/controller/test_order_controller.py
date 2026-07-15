@@ -104,3 +104,18 @@ def test_list_all_returns_all_saved_orders(tmp_path):
     assert len(result) == 2
     result_ids = {order.order_id for order in result}
     assert result_ids == {order1.order_id, order2.order_id}
+
+
+def test_list_pending_returns_only_reserved_orders(tmp_path):
+    controller, _order_repo = make_controller(tmp_path)
+    controller.sample_repo.save(Sample("S1", "Wafer-A", 2.5, 0.9))
+    controller.sample_repo.save(Sample("S2", "Wafer-B", 3.0, 0.8))
+    order1 = controller.submit(customer_name="Acme", sample_id="S1", quantity=10)
+    order2 = controller.submit(customer_name="Globex", sample_id="S2", quantity=5)
+    controller.reject(order2.order_id)
+
+    result = controller.list_pending()
+
+    assert len(result) == 1
+    assert result[0].order_id == order1.order_id
+    assert result[0].status == OrderStatus.RESERVED
