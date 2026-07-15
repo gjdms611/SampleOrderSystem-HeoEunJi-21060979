@@ -18,7 +18,7 @@ PRD 6절 계산식을 순수 함수로 구현 (아직 큐/상태전이와 연결
 - 나누어떨어지지 않는 경우 → 잉여 > 0 (ceil 올림분)
 
 ## 완료 조건
-- [ ] calc_shortage 테스트
-- [ ] calc_actual_production_qty 테스트 (ceil 확인)
-- [ ] calc_total_production_time 테스트
-- [ ] calc_surplus 테스트
+- [x] calc_shortage 테스트
+- [x] calc_actual_production_qty 테스트 (ceil 확인)
+- [x] calc_total_production_time 테스트
+- [x] calc_surplus 테스트

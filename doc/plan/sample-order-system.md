@@ -31,7 +31,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 |---|---|---|---|---|
 | 1 | model | Sample 엔티티 생성/검증 | [phase-01](sample-order-system/phase-01-sample-entity.md) | [x] |
 | 2 | model | Inventory 엔티티 생성/조회 | [phase-02](sample-order-system/phase-02-inventory-entity.md) | [x] |
-| 3 | model | 생산라인 계산식 (부족분/실생산량/총생산시간/잉여) | [phase-03](sample-order-system/phase-03-production-calc.md) | [ ] |
+| 3 | model | 생산라인 계산식 (부족분/실생산량/총생산시간/잉여) | [phase-03](sample-order-system/phase-03-production-calc.md) | [x] |
 | 4 | model | Order 생성 (초기 상태 RESERVED) | [phase-04](sample-order-system/phase-04-order-create.md) | [ ] |
 | 5 | model | Order 상태전이: RESERVED -> REJECTED | [phase-05](sample-order-system/phase-05-order-reject.md) | [ ] |
 | 6 | model | Order 상태전이: RESERVED -> CONFIRMED (재고충분) | [phase-06](sample-order-system/phase-06-order-approve-sufficient.md) | [ ] |
