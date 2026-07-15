@@ -15,6 +15,6 @@
 - `yield_rate == 0`, `yield_rate > 1`
 
 ## 완료 조건
-- [ ] 정상 생성 테스트
-- [ ] avg_production_time 검증 테스트
-- [ ] yield_rate 검증 테스트
+- [x] 정상 생성 테스트
+- [x] avg_production_time 검증 테스트
+- [x] yield_rate 검증 테스트
