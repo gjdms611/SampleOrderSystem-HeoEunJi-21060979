@@ -48,12 +48,14 @@ def test_confirms_in_shortage_ascending_order_not_arrival_order():
     queue.lines[0] = producing_job
     job_shortage_5 = make_job("O2", shortage=5, actual_qty=5)
     job_shortage_2 = make_job("O3", shortage=2, actual_qty=2)
-    queue.waiting.append(job_shortage_5)
-    queue.waiting.append(job_shortage_2)
+    queue.enqueue(job_shortage_5)
+    queue.enqueue(job_shortage_2)
     inventory = Inventory("S1", 0)
 
+    # job_shortage_2(shortage=2) 확정에 2 unit, 그 소비분 만큼 surplus가 초기화되므로
+    # job_shortage_5(shortage=5) 확정까지 추가로 5 unit 더 필요 (총 7 unit).
     confirmed_so_far = []
-    for _ in range(5):
+    for _ in range(7):
         confirmed_so_far += queue.produce_unit(0, inventory)
 
     assert confirmed_so_far == [job_shortage_2, job_shortage_5]
@@ -67,9 +69,16 @@ def test_confirmation_scan_stops_at_first_unmet_shortage():
     other_probes = [
         ShortageAccessProbe(make_job(f"O{i}", shortage=2_000_000 + i, actual_qty=1)) for i in range(999)
     ]
-    queue.waiting.append(probe)
-    queue.waiting.extend(other_probes)
+    queue.enqueue(probe)
+    for p in other_probes:
+        queue.enqueue(p)
     inventory = Inventory("S1", 0)
+
+    # enqueue() 자체도 정렬을 위해 shortage를 한 번 읽으므로, 확정 스캔 단계에서만
+    # 발생하는 접근을 순수하게 측정하기 위해 여기서 리셋한다.
+    probe.access_count = 0
+    for p in other_probes:
+        p.access_count = 0
 
     queue.produce_unit(0, inventory)
 

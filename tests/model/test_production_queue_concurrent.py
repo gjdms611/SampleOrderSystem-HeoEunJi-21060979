@@ -30,7 +30,7 @@ def test_waiting_order_confirmed_immediately_once_surplus_covers_its_shortage():
     producing_job = make_job("O1", shortage=0, actual_qty=10)
     queue.lines[0] = producing_job
     waiting_job = make_job("O2", shortage=3, actual_qty=5)
-    queue.waiting.append(waiting_job)
+    queue.enqueue(waiting_job)
     inventory = Inventory("S1", 0)
 
     result1 = queue.produce_unit(0, inventory)
@@ -49,7 +49,7 @@ def test_prd_6_2_scenario_20ea_confirmed_at_cumulative_120_100ea_stays_producing
     job_100 = make_job("O100", shortage=100, actual_qty=150)
     queue.lines[0] = job_100
     job_20 = make_job("O20", shortage=20, actual_qty=30)
-    queue.waiting.append(job_20)
+    queue.enqueue(job_20)
     inventory = Inventory("S1", 0)
 
     confirmed_so_far = []

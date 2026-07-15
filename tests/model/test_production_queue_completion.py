@@ -32,7 +32,7 @@ def test_completed_line_is_backfilled_with_next_waiting_job():
     job1 = make_job("O1", shortage=0, actual_qty=1)
     queue.lines[0] = job1
     job2 = make_job("O2", shortage=5, actual_qty=6)
-    queue.waiting.append(job2)
+    queue.enqueue(job2)
     inventory = Inventory("S1", 0)
 
     confirmed = queue.produce_unit(0, inventory)

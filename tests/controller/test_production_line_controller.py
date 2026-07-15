@@ -29,7 +29,7 @@ def test_waiting_jobs_returns_queue_waiting_list():
     job1 = make_job("O1")
     queue.lines[0] = job1
     job2 = make_job("O2")
-    queue.waiting.append(job2)
+    queue.enqueue(job2)
     controller = ProductionLineController(queue)
 
     result = controller.waiting_jobs()
