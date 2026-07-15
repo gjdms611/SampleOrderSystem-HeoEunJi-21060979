@@ -40,7 +40,9 @@ storage/      - JSON 파일 raw load/save. 순수 파일 IO.
 
 ## 현재 진행 상태
 
-이 프로젝트는 Explore(PRD) → Plan(Phase 설계) → Action(Phase별 TDD 구현) 순서로 진행 중이며, 전체 21개 Phase 중 `model`/`storage` 계층 일부가 구현되어 있다. `controller`/`view`/`main.py`는 아직 없다 — 즉 **아직 실행 가능한 콘솔 프로그램은 없고**, 지금 확인할 수 있는 것은 구현된 로직에 대한 테스트뿐이다.
+이 프로젝트는 Explore(PRD) → Plan(Phase 설계) → Action(Phase별 TDD 구현) 순서로 진행 중이다. 전체 21개 Phase 중 `model`/`storage`/`repository` 계층 대부분과 `controller`의 시료관리(Phase17)까지 구현되어 있고, 주문 접수/승인/출고 유스케이스(Phase 18~20)는 아직이다.
+
+다만 Phase 21(전체 메뉴 조립)이 끝나길 기다리지 않아도 지금 바로 실행해볼 수 있도록, 임시 실행 골격(Phase 22 — `main.py`)이 먼저 만들어져 있다. 메인 메뉴 중 **1. 시료관리(등록/조회/검색)만 실제로 동작**하고, 나머지 메뉴(주문 접수/승인/출고/모니터링)는 아직 구현 전이라 선택하면 `TBD` 안내만 뜬다. Phase 18~20이 끝나면 Phase 21에서 나머지 메뉴가 실제로 연결된다.
 
 진행 상황은 [`doc/plan/sample-order-system.md`](doc/plan/sample-order-system.md)의 Phase 목록 체크박스에서 실시간으로 확인할 수 있다.
 
@@ -50,11 +52,21 @@ storage/      - JSON 파일 raw load/save. 순수 파일 IO.
 pip install pytest
 ```
 
-(참고: `model`/`storage` 계층은 표준 라이브러리만 사용한다. `pytest`는 테스트 실행에만 필요하다.)
+(참고: 실제 실행/구현 코드는 표준 라이브러리만 사용한다. `pytest`는 테스트 실행에만 필요하다.)
 
-## 사용법 (현재는 테스트 실행)
+## 실행 방법
 
 레포 루트(`SampleOrderSystem/`)에서 실행한다.
+
+```bash
+python main.py
+```
+
+메뉴에서 `1`을 선택하면 시료 등록/조회/검색을 실제로 해볼 수 있다 (`data/samples.json`에 저장됨). `2`~`5`는 아직 `TBD` 안내만 나온다. `0`으로 종료.
+
+> Windows 콘솔에서 한글이 깨져 보이면 `PYTHONUTF8=1 python main.py`로 실행한다 (콘솔 코드페이지 표시 문제일 뿐, 로직과는 무관).
+
+## 테스트 실행
 
 ```bash
 # 전체 테스트 실행
@@ -63,21 +75,15 @@ pytest
 # 특정 계층만
 pytest tests/model
 pytest tests/storage
+pytest tests/repository
+pytest tests/controller
 
 # 특정 파일/케이스만
 pytest tests/model/test_sample.py -v
 pytest tests/model/test_sample.py::test_creates_sample_with_valid_values -v
 ```
 
-예를 들어 생산라인 계산식만 확인하고 싶다면:
-
-```bash
-pytest tests/model/test_production_calc.py -v
-```
-
-`controller`/`view`/`main.py`(Phase 17~21)까지 구현되면, 여기에 콘솔 메뉴 실행 방법(`python main.py`)이 추가될 예정이다.
-
-> TDD 사이클 중이라 `pytest`(전체) 실행 시 일부 테스트가 실패할 수 있다 — 아직 구현 전인 Phase의 "실패하는 테스트(RED)"가 먼저 커밋되어 있기 때문이다(예: `repository/` 계층). 어느 Phase까지 GREEN(구현 완료)인지는 [`doc/plan/sample-order-system.md`](doc/plan/sample-order-system.md) 체크박스를 보면 된다.
+> TDD 사이클 중이라 `pytest`(전체) 실행 시 일부 테스트가 실패할 수 있다 — 아직 구현 전인 Phase의 "실패하는 테스트(RED)"가 먼저 커밋되어 있기 때문이다. 어느 Phase까지 GREEN(구현 완료)인지는 [`doc/plan/sample-order-system.md`](doc/plan/sample-order-system.md) 체크박스를 보면 된다.
 
 ## 참고
 
