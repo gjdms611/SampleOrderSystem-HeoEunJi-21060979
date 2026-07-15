@@ -17,7 +17,7 @@ class OrderController:
     def submit(self, customer_name, sample_id, quantity):
         if self.sample_repo.find_by_id(sample_id) is None:
             return None
-        order_id = f"O{len(self.order_repo.find_all()) + 1}"
+        order_id = f"ORD-{len(self.order_repo.find_all()) + 1:03d}"
         try:
             order = Order(order_id, customer_name, sample_id, quantity)
         except ValueError:
