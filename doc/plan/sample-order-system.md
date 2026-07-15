@@ -39,7 +39,7 @@ storage/      - JSON 파일 raw load/save. CRUD 의미 없음, 순수 파일 IO.
 | 8 | model | 생산대기큐: FIFO 등록 + 라인(N개) 유휴 시 배정 | [phase-08](sample-order-system/phase-08-production-queue.md) | [x] |
 | 9 | model | 동시생산 실시간 반영 (PRD 6.2, 핵심) | [phase-09](sample-order-system/phase-09-concurrent-production.md) | [x] |
 | 10 | model | 생산작업 완료 + 잉여 재고 반영 | [phase-10](sample-order-system/phase-10-production-complete-surplus.md) | [x] |
-| 11 | model | Order 취소 규칙 + 허용 안 된 전이 차단 | [phase-11](sample-order-system/phase-11-order-cancel-guard.md) | [ ] |
+| 11 | model | Order 취소 규칙 + 허용 안 된 전이 차단 | [phase-11](sample-order-system/phase-11-order-cancel-guard.md) | [x] |
 | 12 | model | Order 상태전이: CONFIRMED -> RELEASE | [phase-12](sample-order-system/phase-12-order-release.md) | [ ] |
 | 13 | model | 모니터링 판정: 재고 여유/부족/고갈 | [phase-13](sample-order-system/phase-13-monitoring-judge.md) | [x] |
 | 14 | storage | JSON 파일 raw load/save 공통 유틸 | [phase-14](sample-order-system/phase-14-storage.md) | [x] |

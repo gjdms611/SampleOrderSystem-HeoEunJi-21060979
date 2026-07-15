@@ -12,6 +12,10 @@ class OrderStatus(Enum):
     RELEASE = "RELEASE"
 
 
+class InvalidOrderTransitionError(Exception):
+    pass
+
+
 class Order:
     def __init__(self, order_id, customer_name, sample_id, quantity):
         self.order_id = order_id
@@ -20,10 +24,20 @@ class Order:
         self.quantity = quantity
         self.status = OrderStatus.RESERVED
 
+    def _guard_reserved(self) -> None:
+        if self.status != OrderStatus.RESERVED:
+            raise InvalidOrderTransitionError(f"cannot transition from {self.status}")
+
     def reject(self) -> None:
+        self._guard_reserved()
+        self.status = OrderStatus.REJECTED
+
+    def cancel(self) -> None:
+        self._guard_reserved()
         self.status = OrderStatus.REJECTED
 
     def approve(self, inventory_qty_at_approval: int, sample=None):
+        self._guard_reserved()
         if inventory_qty_at_approval >= self.quantity:
             self.status = OrderStatus.CONFIRMED
             return None

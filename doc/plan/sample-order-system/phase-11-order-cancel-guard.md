@@ -15,5 +15,5 @@
 - REJECTED에서 `approve()` 시도
 
 ## 완료 조건
-- [ ] RESERVED 외 상태에서 cancel() 거부 테스트
-- [ ] 잘못된 시작 상태에서 reject/approve/release 거부 테스트
+- [x] RESERVED 외 상태에서 cancel() 거부 테스트
+- [x] 잘못된 시작 상태에서 reject/approve/release 거부 테스트 (release는 Phase12에서 추가)
