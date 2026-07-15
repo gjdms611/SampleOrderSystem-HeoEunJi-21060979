@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -150,28 +152,46 @@ def show_stock_judgement(judgements) -> None:
     console.print(table)
 
 
-def show_production_lines(current_jobs, waiting_jobs) -> None:
-    if not current_jobs:
+def show_production_line_screen(line_count, running_count, current_rows, waiting_rows) -> None:
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    console.print(f"[bold]생산라인 {line_count}개 (가동중 {running_count} / 유휴 {line_count - running_count})[/bold]  현재시각 {now}")
+
+    if not current_rows:
         show_message("생산중인 작업이 없습니다.")
     else:
-        current_table = Table(title="생산중", show_header=True, header_style="bold green")
-        current_table.add_column("주문ID")
-        current_table.add_column("시료ID")
-        current_table.add_column("진행률")
-        for job in current_jobs:
-            progress = int(job.produced_qty / job.actual_qty * 100) if job.actual_qty else 0
-            current_table.add_row(job.order_id, job.sample_id, f"{job.produced_qty}/{job.actual_qty} ({progress}%)")
+        current_table = Table(title="처리중", show_header=True, header_style="bold green")
+        for column in ("주문번호", "시료", "주문량", "재고", "부족분", "실생산량", "수율", "진행률", "예상완료시각"):
+            current_table.add_column(column)
+        for row in current_rows:
+            progress_pct = int(row["progress_ratio"] * 100)
+            current_table.add_row(
+                row["order_id"],
+                row["sample_name"],
+                str(row["quantity"]),
+                str(row["inventory"]),
+                str(row["shortage"]),
+                f"{row['produced_qty']}/{row['actual_qty']}",
+                f"{row['yield_rate'] * 100:.0f}%",
+                f"{progress_pct}%",
+                row["expected_completion_at"].strftime("%Y-%m-%d %H:%M:%S"),
+            )
         console.print(current_table)
 
-    if not waiting_jobs:
+    if not waiting_rows:
         show_message("대기중인 작업이 없습니다.")
     else:
-        waiting_table = Table(title="대기중", show_header=True, header_style="bold yellow")
-        waiting_table.add_column("주문ID")
-        waiting_table.add_column("시료ID")
-        waiting_table.add_column("부족분")
-        for job in waiting_jobs:
-            waiting_table.add_row(job.order_id, job.sample_id, str(job.shortage))
+        waiting_table = Table(title="대기중 (FIFO)", show_header=True, header_style="bold yellow")
+        for column in ("순서", "주문번호", "시료", "주문량", "부족분", "실생산량"):
+            waiting_table.add_column(column)
+        for row in waiting_rows:
+            waiting_table.add_row(
+                str(row["position"]),
+                row["order_id"],
+                row["sample_name"],
+                str(row["quantity"]),
+                str(row["shortage"]),
+                str(row["actual_qty"]),
+            )
         console.print(waiting_table)
 
 

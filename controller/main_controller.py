@@ -1,3 +1,5 @@
+import threading
+
 from view import console_view
 
 
@@ -125,6 +127,23 @@ class MainController:
         console_view.show_order(order)
 
     def _handle_production_line_menu(self) -> None:
-        current_jobs = self.line_controller.current_jobs()
-        waiting_jobs = self.line_controller.waiting_jobs()
-        console_view.show_production_lines(current_jobs, waiting_jobs)
+        order_repo = self.order_controller.order_repo
+        sample_repo = self.order_controller.sample_repo
+        inventory_repo = self.order_controller.inventory_repo
+        stop_event = threading.Event()
+
+        def refresh_loop() -> None:
+            while not stop_event.is_set():
+                self.line_controller.tick(inventory_repo, self.order_controller)
+                line_count = len(self.line_controller.queue.lines)
+                running_count = len(self.line_controller.current_jobs())
+                current_rows = self.line_controller.describe_current(order_repo, sample_repo, inventory_repo)
+                waiting_rows = self.line_controller.describe_waiting(order_repo, sample_repo)
+                console_view.show_production_line_screen(line_count, running_count, current_rows, waiting_rows)
+                stop_event.wait(0.5)
+
+        thread = threading.Thread(target=refresh_loop, daemon=True)
+        thread.start()
+        input("Enter를 누르면 메뉴로 돌아갑니다...\n")
+        stop_event.set()
+        thread.join()
