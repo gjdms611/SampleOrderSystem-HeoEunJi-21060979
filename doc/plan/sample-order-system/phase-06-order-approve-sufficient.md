@@ -11,4 +11,4 @@
 - 재고부족 분기는 Phase 7에서 시그니처 확장.
 
 ## 완료 조건
-- [ ] 재고충분 시 RESERVED -> CONFIRMED 전이 테스트
+- [x] 재고충분 시 RESERVED -> CONFIRMED 전이 테스트

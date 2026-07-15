@@ -19,3 +19,8 @@ class Order:
 
     def reject(self) -> None:
         self.status = OrderStatus.REJECTED
+
+    def approve(self, inventory_qty_at_approval: int):
+        if inventory_qty_at_approval >= self.quantity:
+            self.status = OrderStatus.CONFIRMED
+            return None
