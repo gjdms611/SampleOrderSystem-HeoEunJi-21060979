@@ -1,6 +1,6 @@
 from controller.order_controller import OrderController
 from model.inventory import Inventory
-from model.order import OrderStatus
+from model.order import Order, OrderStatus
 from model.production_queue import ProductionQueue
 from model.sample import Sample
 from repository.inventory_repository import InventoryRepository
@@ -63,5 +63,23 @@ def test_approve_on_non_reserved_order_returns_none_without_raising(tmp_path):
     controller.reject(order.order_id)
 
     result = controller.approve(order.order_id)
+
+    assert result is None
+
+
+def test_approve_on_nonexistent_order_id_returns_none_without_raising(tmp_path):
+    controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
+
+    result = controller.approve("NOPE")
+
+    assert result is None
+
+
+def test_approve_on_order_with_unregistered_sample_returns_none_without_raising(tmp_path):
+    controller, order_repo, inventory_repo, sample_repo, queue = make_controller(tmp_path)
+    order = Order("O1", "Acme", "NOPE", 10)
+    order_repo.save(order)
+
+    result = controller.approve("O1")
 
     assert result is None
