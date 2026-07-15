@@ -46,17 +46,9 @@ storage/      - JSON 파일 raw load/save. 순수 파일 IO.
 
 진행 상황은 [`doc/plan/sample-order-system.md`](doc/plan/sample-order-system.md)의 Phase 목록 체크박스에서 실시간으로 확인할 수 있다.
 
-## 설치
-
-```bash
-pip install pytest
-```
-
-(참고: 실제 실행/구현 코드는 표준 라이브러리만 사용한다. `pytest`는 테스트 실행에만 필요하다.)
-
 ## 실행 방법
 
-레포 루트(`SampleOrderSystem/`)에서 실행한다.
+표준 라이브러리만 사용하므로 별도 설치 없이 실행 가능하다. 레포 루트(`SampleOrderSystem/`)에서 실행한다.
 
 ```bash
 python main.py
@@ -65,27 +57,3 @@ python main.py
 메뉴에서 `1`을 선택하면 시료 등록/조회/검색을 실제로 해볼 수 있다 (`data/samples.json`에 저장됨). `2`~`5`는 아직 `TBD` 안내만 나온다. `0`으로 종료.
 
 > Windows 콘솔에서 한글이 깨져 보이면 `PYTHONUTF8=1 python main.py`로 실행한다 (콘솔 코드페이지 표시 문제일 뿐, 로직과는 무관).
-
-## 테스트 실행
-
-```bash
-# 전체 테스트 실행
-pytest
-
-# 특정 계층만
-pytest tests/model
-pytest tests/storage
-pytest tests/repository
-pytest tests/controller
-
-# 특정 파일/케이스만
-pytest tests/model/test_sample.py -v
-pytest tests/model/test_sample.py::test_creates_sample_with_valid_values -v
-```
-
-> TDD 사이클 중이라 `pytest`(전체) 실행 시 일부 테스트가 실패할 수 있다 — 아직 구현 전인 Phase의 "실패하는 테스트(RED)"가 먼저 커밋되어 있기 때문이다. 어느 Phase까지 GREEN(구현 완료)인지는 [`doc/plan/sample-order-system.md`](doc/plan/sample-order-system.md) 체크박스를 보면 된다.
-
-## 참고
-
-- 커밋 이력이 곧 개발 과정 기록이다: Phase마다 "실패하는 테스트(RED)" 커밋과 "최소 구현(GREEN)" 커밋이 쌍으로 남아 있다.
-- 프로젝트 컨벤션/작업 규칙: [`CLAUDE.md`](CLAUDE.md)
