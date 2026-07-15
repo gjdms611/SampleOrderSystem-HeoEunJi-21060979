@@ -15,19 +15,23 @@ class ProductionQueue:
         job = self.lines[line_index]
         job.produced_qty += 1
 
-        if job.produced_qty <= job.shortage:
-            return []
-
-        inventory.quantity += 1
-
         confirmed = []
-        remaining = []
-        for waiting_job in self.waiting:
-            if waiting_job.sample_id == inventory.sample_id and inventory.quantity >= waiting_job.shortage:
-                inventory.quantity -= waiting_job.shortage
-                confirmed.append(waiting_job)
-            else:
-                remaining.append(waiting_job)
-        self.waiting = remaining
+
+        if job.produced_qty > job.shortage:
+            inventory.quantity += 1
+
+            remaining = []
+            for waiting_job in self.waiting:
+                if waiting_job.sample_id == inventory.sample_id and inventory.quantity >= waiting_job.shortage:
+                    inventory.quantity -= waiting_job.shortage
+                    confirmed.append(waiting_job)
+                else:
+                    remaining.append(waiting_job)
+            self.waiting = remaining
+
+        if job.produced_qty == job.actual_qty:
+            confirmed.append(job)
+            self.lines[line_index] = None
+            self.assign_idle_lines()
 
         return confirmed

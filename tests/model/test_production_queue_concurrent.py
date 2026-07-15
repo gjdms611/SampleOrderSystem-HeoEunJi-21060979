@@ -60,8 +60,11 @@ def test_prd_6_2_scenario_20ea_confirmed_at_cumulative_120_100ea_stays_producing
     assert job_20 not in queue.waiting
     assert job_100.produced_qty == 120
 
-    for _ in range(30):
+    for _ in range(29):
         queue.produce_unit(0, inventory)
 
-    assert job_100.produced_qty == 150
+    assert job_100.produced_qty == 149
     assert queue.lines[0] is job_100
+
+    # 150번째(actual_qty 도달) 생산분부터는 Phase 10(생산완료 처리) 영역이므로
+    # 여기서는 완료 직전까지만 검증한다.
